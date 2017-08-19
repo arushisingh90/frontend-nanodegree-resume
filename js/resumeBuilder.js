@@ -83,8 +83,8 @@ var education = {
     "display": function() {
         for (var school = 0; school < education.schools.length; school++) {
             $("#education").append(HTMLschoolStart);
-            var formattedHTMLschoolName = HTMLschoolName.replace("%data%", this.schools[school].name).replace("#", this.schools[school].URL)
-            var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", this.schools[school].degree)
+            var formattedHTMLschoolName = HTMLschoolName.replace("%data%", this.schools[school].name).replace("#", this.schools[school].URL);
+            var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", this.schools[school].degree);
             $(".education-entry:last").append(formattedHTMLschoolName + formattedHTMLschoolDegree);
             $(".education-entry:last").append(HTMLschoolDates.replace("%data%", this.schools[school].dates));
             $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", this.schools[school].location));
