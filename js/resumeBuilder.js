@@ -14,16 +14,16 @@ var bio = {
         $("#header").prepend(HTMLheaderRole.replace("%data%", this.role));
         $("#header").prepend(HTMLheaderName.replace("%data%", this.name));
         var formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "mobile").replace("%data%", this.contacts.mobile);
-        $("#topContacts").append(formattedHTMLContactGeneric);
+        $("#topContacts,#footerContacts").append(formattedHTMLContactGeneric);
 
         formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "email").replace("%data%", this.contacts.email);
-        $("#topContacts").append(formattedHTMLContactGeneric);
+        $("#topContacts,#footerContacts").append(formattedHTMLContactGeneric);
 
         formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "github").replace("%data%", this.contacts.github);
-        $("#topContacts").append(formattedHTMLContactGeneric);
+        $("#topContacts,#footerContacts").append(formattedHTMLContactGeneric);
 
         formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "location").replace("%data%", this.contacts.location);
-        $("#topContacts").append(formattedHTMLContactGeneric);
+        $("#topContacts,#footerContacts").append(formattedHTMLContactGeneric);
 
         $("#header").append(HTMLbioPic.replace("%data%", this.biopic));
         $("#header").append(HTMLwelcomeMsg.replace("%data%", this.welcomeMessage));
@@ -31,37 +31,10 @@ var bio = {
 
         if (this.skills.length > 0) {
             $("#header").append(HTMLskillsStart);
-            var formatHTMLskills = HTMLskills.replace("%data%", bio.skills[0]);
-            $("#skills").append(formatHTMLskills);
-
-            formatHTMLskills = HTMLskills.replace("%data%", bio.skills[1]);
-            $("#skills").append(formatHTMLskills);
-
-            formatHTMLskills = HTMLskills.replace("%data%", bio.skills[2]);
-            $("#skills").append(formatHTMLskills);
-
-            formatHTMLskills = HTMLskills.replace("%data%", bio.skills[3]);
-            $("#skills").append(formatHTMLskills);
-
-            formatHTMLskills = HTMLskills.replace("%data%", bio.skills[4]);
-            $("#skills").append(formatHTMLskills);
-
-            formatHTMLskills = HTMLskills.replace("%data%", bio.skills[5]);
-            $("#skills").append(formatHTMLskills);
+            for (var skill = 0; skill < bio.skills.length; skill++) {
+                $("#skills").append(HTMLskills.replace("%data%", bio.skills[skill]));
+            }
         }
-    },
-    footerContactsDisplay: function() {
-        var formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "mobile").replace("%data%", this.contacts.mobile);
-        $("#footerContacts").append(formattedHTMLContactGeneric);
-
-        formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "email").replace("%data%", this.contacts.email);
-        $("#footerContacts").append(formattedHTMLContactGeneric);
-
-        formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "github").replace("%data%", this.contacts.github);
-        $("#footerContacts").append(formattedHTMLContactGeneric);
-
-        formattedHTMLContactGeneric = HTMLcontactGeneric.replace("%contact%", "location").replace("%data%", this.contacts.location);
-        $("#footerContacts").append(formattedHTMLContactGeneric);
     }
 };
 
@@ -72,18 +45,18 @@ var education = {
         "degree": "Bachelors of Engineering",
         "majors": ["Computer Science"],
         "dates": "2009 - 2013",
-        "URL": "https://manipal.edu/mit.html"
+        "url": "https://manipal.edu/mit.html"
     }],
     "onlineCources": [{
         "title": "Front-End Web Developer Nanodegree Program",
         "school": "Udacity",
         "dates": "May 2017 - Present",
-        "URL": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+        "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
     }],
     "display": function() {
         for (var school = 0; school < education.schools.length; school++) {
             $("#education").append(HTMLschoolStart);
-            var formattedHTMLschoolName = HTMLschoolName.replace("%data%", this.schools[school].name).replace("#", this.schools[school].URL);
+            var formattedHTMLschoolName = HTMLschoolName.replace("%data%", this.schools[school].name).replace("#", this.schools[school].url);
             var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", this.schools[school].degree);
             $(".education-entry:last").append(formattedHTMLschoolName + formattedHTMLschoolDegree);
             $(".education-entry:last").append(HTMLschoolDates.replace("%data%", this.schools[school].dates));
@@ -96,11 +69,11 @@ var education = {
             $("#education").append(HTMLonlineClasses);
             for (var onlineCource = 0; onlineCource < education.onlineCources.length; onlineCource++) {
                 $("#education").append(HTMLschoolStart);
-                var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%", this.onlineCources[onlineCource].title).replace("#", this.onlineCources[onlineCource].URL);
+                var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%", this.onlineCources[onlineCource].title).replace("#", this.onlineCources[onlineCource].url);
                 var formattedHTMLonlineSchool = HTMLonlineSchool.replace("%data%", this.onlineCources[onlineCource].school);
                 $(".education-entry:last").append(formattedHTMLonlineTitle + formattedHTMLonlineSchool);
                 $(".education-entry:last").append(HTMLonlineDates.replace("%data%", this.onlineCources[onlineCource].dates));
-                $(".education-entry:last").append(HTMLonlineURL.replace("%data%", this.onlineCources[onlineCource].URL));
+                $(".education-entry:last").append(HTMLonlineURL.replace("%data%", this.onlineCources[onlineCource].url));
             }
         }
 
@@ -115,7 +88,7 @@ var work = {
             "location": "Ellicott City, MD",
             "dates": "Aug 2015 - Present",
             "description": "Developed Automated unit testing for entire business layer using Mock. Worked on several enhancements from requirement, design, and development to unit testing. Used C#.NET, SQL Server, JQuery, JavaScript, Mock and CSS to achieve it. Peer reviewed fellow team member’s design and development work, which helped minimize bugs. Created requirement and design documents for each work request using CMMI Level 4 standards",
-            "URL": "http://www.dcca.com/"
+            "url": "http://www.dcca.com/"
         },
         {
             "employer": "A2Z Inc.",
@@ -123,13 +96,13 @@ var work = {
             "location": "Columbia, MD",
             "dates": "Dec 2012 - Aug 2015",
             "description": "Built a new website to manage mobile apps by providing flexibility to change application configurations from web UI. Revamped existing product to HTML5. Made the UI responsive, beautiful and intuitive. Collaborated with designers to achieve this. Built an internal tool for controlling external API access. Implemented features that allowed testing of web service and viewing log of calls made to the API. Remodeled static aspx pages to be XSLT driven which improved flexibility and maintainability. Upgraded sites to newer versions while maintaining client specific features. Worked on a number of issues and feature enhancements during each sprint. Managed each issue from requirement analysis, development to testing. Provided day-to-day customer service to clients within SLA. Collaborated with the Project Managers to achieve this. Managed issues by proper resource allocation and initial requirement analysis. Addressed customer service in parallel with sprints by doing proper effort estimation and time management.",
-            "URL": "http://www.a2zinc.net/show6/public/enter.aspx"
+            "url": "http://www.a2zinc.net/show6/public/enter.aspx"
         }
     ],
     "display": function() {
         for (var job = 0; job < work.jobs.length; job++) {
             $("#workExperience").append(HTMLworkStart);
-            var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%", this.jobs[job].employer).replace("#", this.jobs[job].URL);
+            var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%", this.jobs[job].employer).replace("#", this.jobs[job].url);
             var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%", this.jobs[job].title);
             $(".work-entry:last").append(formattedHTMLworkEmployer + formattedHTMLworkTitle);
             $(".work-entry:last").append(HTMLworkDates.replace("%data%", this.jobs[job].dates));
@@ -184,7 +157,6 @@ bio.display();
 education.display();
 work.display();
 projects.display();
-bio.footerContactsDisplay();
 
 
 
